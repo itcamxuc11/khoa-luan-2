@@ -1,0 +1,481 @@
+.jSFHNi {
+  background-color: black;
+  color: white;
+  padding: 1% 10%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  font-weight: 400;
+}
+
+.ejMHpf{
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 7% 0;
+  min-height: 89vh;
+}
+
+.jSFHNi div {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+.fEVKwf a:hover {
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
+  color: white;
+}
+
+.fEVKwf a {
+  color: white;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+}
+
+.fEVKwf {
+  background: #303030;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  color: white;
+  padding: 2.5% 3%;
+  font-size: 12px;
+  margin: auto auto 0 auto;
+}
+
+.eXnrgg {
+  background-color: black;
+  color: white;
+  padding: 7px 15px;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  font-size: .9em;
+  margin-left: 10px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+
+.ejMHpf img {
+  width: 200px;
+  margin: 0 auto;
+  margin-bottom: 40px;
+}
+
+.eXnrgg .icon {
+  margin-right: 5px;
+}
+
+.kykAwD {
+  background-color: #f8f8f9;
+  color: black;
+  padding: 7px 15px;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  font-size: .9em;
+  margin-left: 10px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.kykAwD .icon {
+  margin-right: 5px;
+}
+
+
+.dVlCBT {
+  width: 100%;
+  border: none;
+  background-color: #f2eded;
+  font-family: sans-serif;
+  font-weight: 500;
+  padding: 3% 4%;
+  border-bottom: 2px solid transparent;
+}
+
+.dVlCBT:focus {
+  border-bottom: 2px solid rgb(67, 164, 34);
+}
+
+.dVlCBT:not(:first-child) {
+  margin-top: 3px;
+}
+
+.gxxaVj {
+  width: 100%;
+  background-color: rgb(67, 164, 34);
+  color: white;
+  border: none;
+  padding: 3% 0;
+  font-weight: 400;
+  margin-top: 5px;
+}
+
+.gxxaVj:hover {
+  -webkit-transition-duration: 400ms;
+  transition-duration: 400ms;
+  background-color: rgb(50, 130, 30);
+}
+
+.dsnOpO {
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.dsnOpO .home-container {
+  background-image: url("https://www.ubereats.com/restaurant/_static/cd6de13bd5f5f13312b5f9571522aef4.jpg");
+  min-height: 550px;
+  color: white;
+  padding: 0 10%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+.kQmsoI {
+  padding: 13% 3%;
+  max-width: 550px;
+}
+
+.kQmsoI h2 {
+  font-size: 40px;
+  line-height: 50px;
+  margin-bottom: 20px;
+}
+
+.kQmsoI p {
+  line-height: 25px;
+}
+
+.faylyw {
+  background-color: white;
+  color: black;
+  width: 700px;
+  font-weight: bold;
+  font-size: .9em;
+  padding: 5% 4%;
+}
+
+.faylyw h2 {
+  padding-bottom: 25px;
+}
+
+.kXmefM {
+  margin-bottom: 2%;
+  color: #c7c7c7;
+}
+
+.kXmefM label {
+  color: rgb(67, 164, 34);
+  font-weight: 400;
+}
+
+.kXmefM .feedback {
+  color: red;
+}
+
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f8f8f9;
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  color: rgb(67, 164, 34);
+}
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f8f8f9;
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  color: rgb(67, 164, 34);
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.left-menu{
+  padding-top: 20px;
+  background-color: whitesmoke;
+  height: 100%;
+  z-index: 2;
+}
+.left-menu li{
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 600;
+  padding:10px 0;
+  list-style: none;
+  text-align: left;
+}
+
+.icon-left{
+  padding-right: 15px;
+  width: 45px;
+}
+
+.logo-web{
+  text-align: center;
+  padding-bottom: 40px;
+}
+
+.logo-web img{
+  height: 24px;
+  width: auto;
+}
+.left-menu ul a{
+  transition: all 0.2s ease-in-out;
+  text-decoration: none !important;
+  color: inherit;
+}
+
+.left-menu ul a.active{
+  color:rgb(95, 183, 9);
+}
+
+.left-menu ul a:hover{
+  color:rgb(95, 183, 9);
+}
+
+.top-menu{
+  background-color: rgb(250, 250, 250);
+  flex-direction: row-reverse;
+  position: fixed;
+  margin-right: 0 !important;
+  top: 0;
+  right: 0;
+  align-items: center;
+  z-index: 1;
+  height: 45px;
+  width: 100%;
+}
+
+.top-menu .item{
+  padding: 0 10px;
+  cursor: pointer;
+}
+.top-menu :first-child{
+  padding-right: 20px;
+}
+
+.right-main{
+  padding-top: 60px;
+  padding-left: 20px;
+}
+
+.sub-menu{
+  list-style: none;
+  margin-bottom: 30px;
+  padding-left: 0px;
+}
+
+.sub-menu li{
+  margin-right: 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.sub-menu li a{
+  transition: all 0.2s ease-in-out;
+  padding: 0 5px;
+  padding-bottom: 10px;
+  color: inherit !important;
+}
+.sub-menu li a.active{
+  border-bottom:2px solid rgb(95, 183, 9); 
+}
+.sub-menu li a:hover{
+  text-decoration: none;
+  border-bottom:2px solid rgb(95, 183, 9); 
+}
+
+.heading-panel .col-6{
+  padding-left: 0px;
+  margin-bottom: 30px;
+}
+.heading-panel .col-6:last-child{
+  padding-right: 40px;
+  text-align: right;
+}
+.heading-panel .page-title input{
+  font-size: 20px !important;
+  font-weight: 500 !important;
+  width: 200px;
+  flex:none;
+  pointer-events:none;
+}
+
+.heading-panel .page-title .info-right{
+  pointer-events: inherit;
+  cursor: pointer;
+}
+
+.my-btn{
+  background-color: rgb(95, 183, 9); 
+}
+.my-btn:hover{
+  background-color: rgb(75, 141, 8); 
+}
+
+.btn-add{
+  border: none;
+  color: white;
+  padding: 8px 16px;
+}
+
+.box-filter div{
+  background-color: whitesmoke;
+  border-radius: 8px;
+  margin-right: 40px;
+  padding: 5px 10px;
+}
+
+.box-filter input {
+  border: none;
+  outline: none;
+  background-color: whitesmoke;
+}
+
+.box-filter select{
+  border: none;
+  outline: none;
+  background-color: whitesmoke;
+  min-width: 50px;
+}
+
+.box-filter{
+  margin-bottom: 30px;
+}
+
+.data-box{
+  padding-right: 20px;
+}
+
+.data-box table{
+  width: 100%;
+  margin-bottom: 40px;
+}
+.data-box .table th,td{
+  border-collapse: collapse;
+}
+.data-box table thead tr{
+  box-shadow: 0 1px 5px rgba(0,0,0,0.20);
+}
+
+.data-box table thead th{
+  height: 40px;
+  line-height: 40px;
+}
+.data-box tbody tr:first-child td{
+  padding-top: 10px;
+}
+
+.data-box tbody tr td{
+  min-height: 30px;
+  line-height: 30px;
+}
+
+.info-left , .info-right{
+  padding-left: 0px !important;
+  background-color: transparent !important;
+  border: none !important;
+  pointer-events:none;
+}
+
+.info-left.show , .info-right.show{
+  pointer-events: inherit !important;
+}
+
+.btn-hs {
+  visibility: hidden;
+}
+.btn-hs.show{
+  visibility: visible !important;
+}
