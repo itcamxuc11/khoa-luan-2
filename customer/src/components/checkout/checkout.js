@@ -17,7 +17,6 @@ class Checkout extends Component {
                 items: cartStorage.items,
                 count: cartStorage.total,
                 total: total,
-
                 detail: localStorage.getItem('cart')
             }
         }
@@ -40,7 +39,7 @@ class Checkout extends Component {
     onSubmitHandler = (event) => {
         event.preventDefault();
         const db = firebase.firestore();
-        var restaurantId = "UG7TYLe29eFmDYoJG3zx";
+        var restaurantId = localStorage.getItem('id');
         db.collection('orders').doc().set({
             username: this.state.name,
             address: this.state.address,
@@ -49,7 +48,7 @@ class Checkout extends Component {
             detail: this.state.detail,
             restaurant: restaurantId,
             user: firebase.auth().currentUser.uid,
-            status: 'Chờ xác nhận'
+            status: 'Chờ xác nhận',
         }).then(() => {
             alert('Đặt thành công');
             localStorage.removeItem('cart');

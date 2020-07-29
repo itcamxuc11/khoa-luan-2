@@ -23,11 +23,13 @@ export default class Items extends Component {
 
     componentDidMount() {
         const db = firebase.firestore();
-        var restaurantId = "UG7TYLe29eFmDYoJG3zx";
+        var restaurantId = firebase.auth().currentUser.uid;
 
         var DBRestaurant = db.collection('restaurants').doc(restaurantId);
         DBRestaurant.get().then((doc) => {
-            this.setState({ categories: doc.data().categories });
+            if (doc.data().categories) {
+                this.setState({ categories: doc.data().categories });
+            }
             doc.ref.collection('menu').onSnapshot((snapshot) => {
                 snapshot.docChanges().forEach((change) => {
                     if (change.type === "added") {
@@ -69,7 +71,7 @@ export default class Items extends Component {
 
     onClickDelete = (item) => {
         if (window.confirm('Bạn muốn xóa sản phẩm ' + item.data.name)) {
-            var restaurantId = "UG7TYLe29eFmDYoJG3zx";
+            var restaurantId = firebase.auth().currentUser.uid;
             const db = firebase.firestore();
             db.collection("restaurants").doc(restaurantId).get()
                 .then((doc) => {
@@ -96,11 +98,13 @@ export default class Items extends Component {
             newCategory: item.data.category,
         });
     }
+
     onClickAdd = () => {
         this.setState({
             showModal: true,
             oldItem: { id: '', data: {} },
-            modalHeading: 'Thêm sản phẩm'
+            modalHeading: 'Thêm sản phẩm',
+            newCategory: this.state.categories[0]
         });
     }
 
@@ -111,7 +115,7 @@ export default class Items extends Component {
     }
 
     onClickSave = () => {
-        var restaurantId = "UG7TYLe29eFmDYoJG3zx";
+        var restaurantId = firebase.auth().currentUser.uid;
         const db = firebase.firestore().collection("restaurants").doc(restaurantId);
         let newItem = {
             name: this.state.newName,

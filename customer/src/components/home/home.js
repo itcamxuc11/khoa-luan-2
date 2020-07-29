@@ -41,7 +41,7 @@ class Home extends Component {
         return (
             <div>
                 <div className="home-page">
-                    <h3 className="search-title">Your favorite food, delivered with Us</h3>
+                    <h3 className="search-title">Tìm quán ăn ở gần bạn</h3>
                     <div className="d-flex justify-content-center w-100">
                         <div className="search-box">
                             <div className="d-flex">

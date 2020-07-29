@@ -1,72 +1,88 @@
 import React, { Component } from 'react'
+import * as firebase from 'firebase'
+import { Modal } from 'react-bootstrap';
 
 export default class Orders extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            orders: [],
+        }
+    }
+
+    componentDidMount() {
+        var db = firebase.firestore().collection('orders');
+        var restaurantId = firebase.auth().currentUser.uid;
+        db.where('restaurant', '==', restaurantId)
+            .onSnapshot((snapmshot) => {
+                snapmshot.docChanges().forEach((change) => {
+                    if (change.type === "added") {
+                        this.setState({ orders: [...this.state.orders, change.doc.data()] })
+                    }
+                })
+            })
+    }
+
+    close = () => {
+        this.setState({ showModal: false })
+    }
+
     render() {
         return (
-            <div className="right-main">
-                <div>
-                    <div className="d-flex heading-panel">
-                        <h3 className="col-6 page-title">Lịch sử bán hàng</h3>
-                        <div className="col-6">
-                        </div>
-                    </div>
-                    <div className="box-filter d-flex">
-                        <div>
-                            <i className="fas fa-search pr-1"></i>
-                            <input type="text" placeholder="Tìm" />
-                        </div>
-                        <div>
-                            <select>
-                                <option>All</option>
-                                <option>1</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div className="data-box">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Tên</th>
-                                    <th>Mô tả</th>
-                                    <th>Giá</th>
-                                    <th>Danh mục</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr className="first-row">
-                                    <td>Alfreds Futterkiste</td>
-                                    <td>Maria Anders</td>
-                                    <td>Germany</td>
-                                </tr>
-                                <tr>
-                                    <td>Centro comercial Moctezuma</td>
-                                    <td>Francisco Chang</td>
-                                    <td>Mexico</td>
-                                </tr>
-                                <tr>
-                                    <td>Ernst Handel</td>
-                                    <td>Roland Mendel</td>
-                                    <td>Austria</td>
-                                </tr>
-                                <tr>
-                                    <td>Island Trading</td>
-                                    <td>Helen Bennett</td>
-                                    <td>UK</td>
-                                </tr>
-                                <tr>
-                                    <td>Laughing Bacchus Winecellars</td>
-                                    <td>Yoshi Tannamuri</td>
-                                    <td>Canada</td>
-                                </tr>
-                                <tr>
-                                    <td>Magazzini Alimentari Riuniti</td>
-                                    <td>Giovanni Rovelli</td>
-                                    <td>Italy</td>
-                                </tr>
-                            </tbody>
-                        </table>
+            <div>
+                <div className="sub-menu"> </div>
+                <div className="d-flex heading-panel mt-5">
+                    <h3 className="col-6 page-title">Lịch sử đơn hàng</h3>
+                    <div className="col-6">
                     </div>
                 </div>
+                <div className="data-box">
+                    <table>
+                        <thead>
+                            <tr>
+                                <td>STT</td>
+                                <th>Người mua</th>
+                                <th>Số điện thoại</th>
+                                <th>Tổng tiền</th>
+                                <th>Trạng thái</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {
+                                this.state.orders.map((val, key) => {
+                                    return (
+                                        <tr key={key}>
+                                            <td>{key}</td>
+                                            <td>{val.username}</td>
+                                            <td>{val.phoneNumber}</td>
+                                            <td>{val.totalPrice}</td>
+                                            <td>{val.status}</td>
+                                        </tr>
+                                    )
+                                })
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <Modal show={this.state.showModal} onHide={this.close}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>{this.state.modalHeading}</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <div className="d-flex">
+                            <div className="col">
+                                <div className="form-group">
+                                    <label>Danh mục:</label>
+                                    <input onChange={this.onChangeInput} name="newCategory" type="text" className="form-control" Value={this.state.oldCategoty} />
+                                </div>
+                            </div>
+                        </div>
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <button className="btn btn-secondary" onClick={this.close}>Close</button>
+                        <button className="btn btn-primary" onClick={this.onClickSave}>Lưu</button>
+                    </Modal.Footer>
+                </Modal>
             </div>
         )
     }

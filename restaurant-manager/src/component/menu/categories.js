@@ -19,7 +19,7 @@ export default class Categories extends Component {
 
     componentDidMount() {
         var DBRestaurant = firebase.firestore().collection('restaurants');
-        var restaurantId = "UG7TYLe29eFmDYoJG3zx";
+        var restaurantId = firebase.auth().currentUser.uid;
 
         DBRestaurant.where(firebase.firestore.FieldPath.documentId(), '==', restaurantId)
             .onSnapshot((snapshot) => {
@@ -48,7 +48,7 @@ export default class Categories extends Component {
         if (window.confirm('Xóa danh mục ' + category +
             ' và các sản phẩm thuộc danh mục này')) {
             var DBRestaurant = firebase.firestore().collection('restaurants');
-            var restaurantId = "UG7TYLe29eFmDYoJG3zx";
+            var restaurantId = firebase.auth().currentUser.uid;
             DBRestaurant.doc(restaurantId).set({
                 ...this.state.restaurantData,
                 categories: this.state.restaurantData.categories.filter(x => x != category)
@@ -90,7 +90,7 @@ export default class Categories extends Component {
 
     onClickSave = () => {
         var DBRestaurant = firebase.firestore().collection('restaurants');
-        var restaurantId = "UG7TYLe29eFmDYoJG3zx";
+        var restaurantId = firebase.auth().currentUser.uid;
         if (this.state.oldCategoty === '') {
             DBRestaurant.doc(restaurantId).set({
                 ...this.state.restaurantData,

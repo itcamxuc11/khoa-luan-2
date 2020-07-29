@@ -66,9 +66,9 @@ export class Header extends Component {
 
     render() {
         const { redirect } = this.state;
-        let direct='';
+        let direct = '';
         if (redirect) {
-           direct = <Redirect to='/checkout' />
+            direct = <Redirect to='/checkout' />
         }
 
         return (
@@ -78,29 +78,23 @@ export class Header extends Component {
                     <div className="content">
                         <div className="header__inner"><a href="/"><img src="/images/logo_web.png" alt="Uber Eats" className="header__logo" /></a>
                             <div className="header__delivery-info"><label className="control">
-                                <div className="control__input-wrapper tablet dropdown"><img src="/images/input.svg" alt="Address" className="control_icon" /><input type="text" name="address" placeholder="Address" className="control_input control_input--small" defaultValue />
+                                <div className="control__input-wrapper tablet dropdown">
+                                    <img src="/images/input.svg" alt="Address" className="control_icon" />
+                                    <input type="text" name="address" placeholder="Địa chỉ" className="control_input control_input--small" />
                                     <ul className="dropdown-leagues">
                                     </ul>
                                 </div>
                             </label>
                             </div>
                             <div className="header__search"><label className="control">
-                                <div className="control__input-wrapper tablet"><img src="/images/search.svg" alt="Search" className="control_icon" /><input type="text" name="search" placeholder="Search" className="control_input control_input--small" defaultValue /></div>
+
                             </label>
                             </div>
-                            <div className="header__toggle-buttons">
-                                <button type="button" className="header__toggle-btn">
-                                    <img src="/images/location.svg" alt="place icon" />
-                                </button>
-                                <button type="button" className="header__toggle-btn">
-                                    <img src="/images/search.svg" alt="search icon" />
-                                </button>
-                            </div>
+                            <Nav loginedUser={this.state.userLogined} />
                             <button onClick={this.props.showCart} className="header__link pos-relative" href="/basket">
                                 <img title="basket" className="header-logo" src="/images/basket.svg" alt="basket" />
                                 {this.getCartNumber()}
                             </button>
-                            <Nav loginedUser={this.state.userLogined} />
                         </div>
                     </div>
                 </header>
@@ -108,7 +102,7 @@ export class Header extends Component {
                     <div className="checkout d-flex flex-colum">
                         <div className="checkout-header">
                             <div className="justify-content-end d-flex">
-                                <button onClick={this.props.showCart}><img src="images/close.svg" /></button>
+                                <button onClick={this.props.showCart}><img src="/images/close.svg" /></button>
                             </div>
                             <h3>Giỏ hàng</h3>
                         </div>
@@ -116,7 +110,6 @@ export class Header extends Component {
                             <thead>
                             </thead>
                             <tbody>
-                                {}
                                 {
                                     this.getCartInfo().map((value, key) => {
                                         return (

@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import Header from './components/header/header';
+import Register from './components/auth/register'
 import Restaurant from './components/restaurant-page/restaurant';
 import Footer from './components/footer/footer';
 import Search from './components/search/search';
@@ -16,28 +17,33 @@ import {
 import './config/firebase';
 import Checkout from './components/checkout/checkout';
 import Login from './components/auth/login';
+import Notifier from './components/notifier.js/notifier';
 
 function App() {
   return (
     <div className="App">
-            <Router>
-      <Header />
+      <Notifier />
+      <Router>
+        <Header />
         <Switch>
           <Route exact path="/">
-            <Home/>
+            <Home />
           </Route>
-          <Route path="/restaurant/:id" component={Restaurant}/> 
+          <Route path="/restaurant/:id" component={Restaurant} />
           <Route path="/restaurants">
-            <Search/>
+            <Search />
           </Route>
           <Route path="/checkout">
-            <Checkout/>
+            <Checkout />
           </Route>
           <Route path="/login">
-            <Login/>
+            <Login />
+          </Route>
+          <Route path="/register">
+            <Register />
           </Route>
         </Switch>
-      <Footer />
+        <Footer />
       </Router>
     </div>
   );

@@ -30,7 +30,7 @@ export default class Profile extends Component {
 
     componentDidMount() {
         var DBRestaurant = firebase.firestore().collection('restaurants');
-        var restaurantId = "UG7TYLe29eFmDYoJG3zx";
+        var restaurantId = firebase.auth().currentUser.uid;
 
         DBRestaurant.where(firebase.firestore.FieldPath.documentId(), '==', restaurantId)
             .onSnapshot((snapshot) => {
@@ -53,7 +53,7 @@ export default class Profile extends Component {
 
     onClickSave = () => {
         var DBRestaurant = firebase.firestore().collection('restaurants');
-        var restaurantId = "UG7TYLe29eFmDYoJG3zx";
+        var restaurantId = firebase.auth().currentUser.uid;
 
         DBRestaurant.doc(restaurantId).set({
             ...this.state.restaurantData,

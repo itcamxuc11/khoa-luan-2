@@ -3,6 +3,7 @@ const cartState = {
     folowCart: true,
     addAlert: false,
     onCheckout: false,
+    alertShow: false,
 }
 
 const cartReducer = (state = cartState, action) => {
@@ -25,18 +26,18 @@ const cartReducer = (state = cartState, action) => {
                 total: total + 1,
                 items: items
             }));
-            return { ...state, folowCart: !state.folowCart }
+            return { ...state, folowCart: !state.folowCart, alertShow: true }
 
         case 'UPDATE':
-            localStorage.setItem('cart',action.data);
+            localStorage.setItem('cart', action.data);
             return { ...state, folowCart: !state.folowCart }
-
-        case 'REMOVE':
-            return state
 
         case 'SHOW_CART':
             return { ...state, onCheckout: !state.onCheckout }
-            
+
+        case 'HIDE_ALERT':
+            return { ...state, alertShow:false }
+
         default:
             return state
     }

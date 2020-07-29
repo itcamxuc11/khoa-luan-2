@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import * as firebase from 'firebase';
+import { Link } from 'react-router-dom';
 
 export default class Login extends Component {
     constructor(props) {
@@ -43,7 +44,7 @@ export default class Login extends Component {
                                 <input onChange={this.onChangeInput} name="password" type="password" placeholder="Mật khẩu" className="mb-1 sc-AxiKw dVlCBT"  />
                                 <button type="button" onClick={this.onClickLogin} className="mb-1 sc-AxhCb gxxaVj">Đăng nhập</button>
                             </form>
-                            <a href="/">Đăng ký</a>
+                            <Link to="register">Đăng ký</Link>
                         </div>
                     </div>
                     <footer className="sc-fznKkj fEVKwf">

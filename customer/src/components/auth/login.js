@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import * as firebase from 'firebase';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 
 export default class Login extends Component {
     constructor(props) {
@@ -41,11 +41,12 @@ export default class Login extends Component {
         if (redirect) {
            direct = <Redirect to='/'/>
         }
+
         return (
             <div id="root">
                 {direct}
                 <div className="App">
-                    <div className="sc-fznyAO ejMHpf">
+                    <div className="sc-fznyAO ejMHpf pt-3">
                         <div className="form-container">
                             <h2 className="mb-4">Đăng nhập</h2>
                             <form>
@@ -53,10 +54,9 @@ export default class Login extends Component {
                                 <input onChange={this.onChangeInput} name="password" type="password" placeholder="Mật khẩu" className="mb-1 sc-AxiKw dVlCBT" />
                                 <button type="button" onClick={this.onClickLogin} className="mb-1 sc-AxhCb gxxaVj">Đăng nhập</button>
                             </form>
-                            <a href="/register">Đăng ký</a>
+                            <Link to="/register" >Đăng ký</Link>
                         </div>
                     </div>
-
                 </div>
             </div>
 

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import AutoComplete from 'react-google-autocomplete';
 import key from '../../config/googlemap';
 import * as firebase from 'firebase';
+import { Link } from 'react-router-dom';
 
 export default class Register extends Component {
     constructor(props) {
@@ -37,6 +38,9 @@ export default class Register extends Component {
     onClickRegister = () => {
         firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
         .then((doc)=>{
+            doc.user.updateProfile({
+                displayName:this.state.username
+            })
             firebase.firestore().collection('restaurants').doc(doc.user.uid)
             .set({
                 name: this.state.name,
@@ -44,10 +48,11 @@ export default class Register extends Component {
                 location: this.state.location,
                 description: this.state.description,
                 phoneNumber: this.state.phoneNumber,
-                username: this.state.username
+                username: this.state.username,
+                categories: []
             })
             .then(()=>{
-                alert('Đăng ký thành công');
+                
             })
         })
         .catch(function (error) {
@@ -63,11 +68,11 @@ export default class Register extends Component {
         return (
             <div id="root">
                 <div className="App">
-                    <header className="sc-AxjAm jSFHNi"><a href="/"><img src="https://www.ubereats.com/restaurant/_static/d388e65de8662293c3a262f4c2c7d93a.svg" alt="" /></a>
-                        <div> <a href="/session" className="sc-AxirZ eXnrgg"><svg stroke="currentColor" fill="none" strokeWidth={2} viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round" className="icon" size={20} height={20} width={20} xmlns="http://www.w3.org/2000/svg">
+                    <header className="sc-AxjAm jSFHNi"><a href="/"><img src="/images/logo_web-2.png" alt="" /></a>
+                        <div> <Link to="/login" className="sc-AxirZ eXnrgg"><svg stroke="currentColor" fill="none" strokeWidth={2} viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round" className="icon" size={20} height={20} width={20} xmlns="http://www.w3.org/2000/svg">
                             <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
                             <circle cx={12} cy={7} r={4} />
-                        </svg>Đăng nhập</a><a href="/" className="sc-AxirZ kykAwD">Đăng ký</a></div>
+                        </svg>Đăng nhập</Link><a href="/register" className="sc-AxirZ kykAwD">Đăng ký</a></div>
                     </header>
                     <div className="sc-fzozJi dsnOpO">
                         <div className="home-container">

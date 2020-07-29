@@ -26,12 +26,12 @@ export class Item extends Component {
                 <div className="item">
                     <div className="item__left">
                         <h3 className="item__title">{this.props.name}</h3>
-                        <p className="item__description">
+                        <p className="item__description mb-1">
                             {this.props.description}
                         </p>
                         <div className="d-flex">
-                            <p className="item__price col-8">{this.props.price} Đ</p>
-                            <p onClick={this.addToCart} className="col-4 text-right"><img className="add-cart" alt='add' src="/images/plus.svg" /></p>
+                            <p className="item__price col-10 mb-1">{this.props.price} Đ</p>
+                            <p onClick={this.addToCart} className="col-2 mb-1 text-right p-0"><img className="add-cart" alt='add' src="/images/plus.svg" /></p>
                         </div>
                     </div>
                     <div className="item-right"><img className="item__img" alt="Double Sausage Egg McMuffin® Meal" src="https://d1ralsognjng37.cloudfront.net/65ef3c66-5dcb-41bc-842a-d9938ab68e31.jpeg" />
