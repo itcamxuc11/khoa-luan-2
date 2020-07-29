@@ -16,7 +16,7 @@ export default class Nav extends Component {
         else return (
             <span>
                 <span onClick={this.onClickLogout} className="header__link" to="/login">Đăng xuất</span>
-                <span className="header__link">{this.props.loginedUser.displayName}</span>
+                <Link to="myprofile"><span className="header__link">{this.props.loginedUser.displayName}</span></Link>
             </span>
         )
     }

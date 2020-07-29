@@ -18,6 +18,7 @@ import './config/firebase';
 import Checkout from './components/checkout/checkout';
 import Login from './components/auth/login';
 import Notifier from './components/notifier.js/notifier';
+import Profile from './components/profile/profile';
 
 function App() {
   return (
@@ -41,6 +42,9 @@ function App() {
           </Route>
           <Route path="/register">
             <Register />
+          </Route>
+          <Route path="/myprofile">
+            <Profile />
           </Route>
         </Switch>
         <Footer />

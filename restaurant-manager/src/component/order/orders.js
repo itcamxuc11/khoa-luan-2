@@ -7,6 +7,8 @@ export default class Orders extends Component {
         super(props);
         this.state = {
             orders: [],
+            items:[],
+            showModal: false,
         }
     }
 
@@ -21,6 +23,15 @@ export default class Orders extends Component {
                     }
                 })
             })
+    }
+
+    onClickDetail = (i) => {
+        let string = this.state.orders[i].detail;
+        let detail =  JSON.parse(string);
+        this.setState({
+            showModal: true,
+            items: detail.items
+        })
     }
 
     close = () => {
@@ -51,12 +62,17 @@ export default class Orders extends Component {
                             {
                                 this.state.orders.map((val, key) => {
                                     return (
-                                        <tr key={key}>
+                                        <tr key={key + 1}>
                                             <td>{key}</td>
                                             <td>{val.username}</td>
                                             <td>{val.phoneNumber}</td>
                                             <td>{val.totalPrice}</td>
                                             <td>{val.status}</td>
+                                            <td>
+                                                <button onClick={() => { this.onClickDetail(key) }} className="btn btn-outline-info">
+                                                    <i className="fas fa-info"></i>
+                                                </button>
+                                            </td>
                                         </tr>
                                     )
                                 })
@@ -66,21 +82,29 @@ export default class Orders extends Component {
                 </div>
                 <Modal show={this.state.showModal} onHide={this.close}>
                     <Modal.Header closeButton>
-                        <Modal.Title>{this.state.modalHeading}</Modal.Title>
+                        <Modal.Title>Chi tiết đơn hàng</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        <div className="d-flex">
-                            <div className="col">
-                                <div className="form-group">
-                                    <label>Danh mục:</label>
-                                    <input onChange={this.onChangeInput} name="newCategory" type="text" className="form-control" Value={this.state.oldCategoty} />
-                                </div>
-                            </div>
+                        <div className=" mb-4">
+                            <ul className="list-group mb-3">
+                                {
+                                    this.state.items.map((value, key) => {
+                                        return (
+                                            <li key={key} className="list-group-item d-flex justify-content-between lh-condensed">
+                                                <div>
+                                                    <h6 className="my-0">{value.name}</h6>
+                                                    <small className="text-muted">{"x " + value.count}</small>
+                                                </div>
+                                                <span className="text-muted">{value.count * value.price + ' Đ'}</span>
+                                            </li>
+                                        )
+                                    })
+                                }
+                            </ul>
                         </div>
                     </Modal.Body>
                     <Modal.Footer>
                         <button className="btn btn-secondary" onClick={this.close}>Close</button>
-                        <button className="btn btn-primary" onClick={this.onClickSave}>Lưu</button>
                     </Modal.Footer>
                 </Modal>
             </div>

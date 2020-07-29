@@ -1881,3 +1881,204 @@ button {
 .kXmefM .feedback {
   color: red;
 }
+
+/* /here/ */
+
+.left-menu{
+  padding-top: 20px;
+  background-color: whitesmoke;
+  height: 100%;
+  z-index: 2;
+}
+.left-menu li{
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 600;
+  padding:10px 0;
+  list-style: none;
+  text-align: left;
+}
+
+.icon-left{
+  padding-right: 15px;
+  width: 45px;
+}
+
+.logo-web{
+  text-align: center;
+  padding-bottom: 40px;
+}
+
+.logo-web img{
+  height: 24px;
+  width: auto;
+}
+.left-menu ul a{
+  transition: all 0.2s ease-in-out;
+  text-decoration: none !important;
+  color: inherit;
+}
+
+.left-menu ul a.active{
+  color:rgb(95, 183, 9);
+}
+
+.left-menu ul a:hover{
+  color:rgb(95, 183, 9);
+}
+
+.top-menu{
+  background-color: rgb(250, 250, 250);
+  flex-direction: row-reverse;
+  position: fixed;
+  margin-right: 0 !important;
+  top: 0;
+  right: 0;
+  align-items: center;
+  z-index: 1;
+  height: 45px;
+  width: 100%;
+}
+
+.top-menu .item{
+  padding: 0 10px;
+  cursor: pointer;
+}
+.top-menu :first-child{
+  padding-right: 20px;
+}
+
+.right-main{
+  padding-top: 60px;
+  padding-left: 20px;
+}
+
+.sub-menu{
+  list-style: none;
+  margin-bottom: 30px;
+  padding-left: 0px;
+}
+
+.sub-menu li{
+  margin-right: 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.sub-menu li a{
+  transition: all 0.2s ease-in-out;
+  padding: 0 5px;
+  padding-bottom: 10px;
+  color: inherit !important;
+}
+.sub-menu li a.active{
+  border-bottom:2px solid rgb(95, 183, 9); 
+}
+.sub-menu li a:hover{
+  text-decoration: none;
+  border-bottom:2px solid rgb(95, 183, 9); 
+}
+
+.heading-panel .col-6{
+  padding-left: 0px;
+  margin-bottom: 30px;
+}
+.heading-panel .col-6:last-child{
+  padding-right: 40px;
+  text-align: right;
+}
+.heading-panel .page-title input{
+  font-size: 20px !important;
+  font-weight: 500 !important;
+  width: 200px;
+  flex:none;
+  pointer-events:none;
+}
+
+.heading-panel .page-title .info-right{
+  pointer-events: inherit;
+  cursor: pointer;
+}
+
+.my-btn{
+  background-color: rgb(95, 183, 9); 
+}
+.my-btn:hover{
+  background-color: rgb(75, 141, 8); 
+}
+
+.btn-add{
+  border: none;
+  color: white;
+  padding: 8px 16px;
+}
+
+.box-filter div{
+  background-color: whitesmoke;
+  border-radius: 8px;
+  margin-right: 40px;
+  padding: 5px 10px;
+}
+
+.box-filter input {
+  border: none;
+  outline: none;
+  background-color: whitesmoke;
+}
+
+.box-filter select{
+  border: none;
+  outline: none;
+  background-color: whitesmoke;
+  min-width: 50px;
+}
+
+.box-filter{
+  margin-bottom: 30px;
+}
+
+.data-box{
+  padding-right: 20px;
+}
+
+.data-box table{
+  width: 100%;
+  margin-bottom: 40px;
+}
+.data-box .table th,td{
+  border-collapse: collapse;
+}
+.data-box table thead tr{
+  box-shadow: 0 1px 5px rgba(0,0,0,0.20);
+}
+
+.data-box table thead th{
+  height: 40px;
+  line-height: 40px;
+}
+.data-box tbody tr:first-child td{
+  padding-top: 10px;
+}
+
+.data-box tbody tr td{
+  min-height: 30px;
+  line-height: 30px;
+}
+
+.info-left , .info-right{
+  padding-left: 0px !important;
+  background-color: transparent !important;
+  border: none !important;
+  pointer-events:none;
+}
+
+.info-left.show , .info-right.show{
+  pointer-events: inherit !important;
+}
+
+.btn-hs {
+  visibility: hidden;
+}
+.btn-hs.show{
+  visibility: visible !important;
+}
