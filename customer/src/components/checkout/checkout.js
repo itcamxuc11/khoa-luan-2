@@ -28,12 +28,12 @@ class Checkout extends Component {
                 total: 0
             }
         }
-        firebase.auth().onAuthStateChanged( (user) =>{
-            if(!user) 
-            this.setState({
-                redirect: true,
-                path:'/login'
-            })
+        firebase.auth().onAuthStateChanged((user) => {
+            if (!user)
+                this.setState({
+                    redirect: true,
+                    path: '/login'
+                })
         })
     }
 
@@ -49,13 +49,13 @@ class Checkout extends Component {
             detail: this.state.detail,
             restaurant: restaurantId,
             user: firebase.auth().currentUser.uid,
-            status:'Chờ xác nhận'
+            status: 'Chờ xác nhận'
         }).then(() => {
             alert('Đặt thành công');
             localStorage.removeItem('cart');
             this.setState({
                 redirect: true,
-                path:'/'
+                path: '/'
             })
         })
     }
@@ -68,11 +68,13 @@ class Checkout extends Component {
     render() {
 
         const { redirect } = this.state;
+        let direct = '';
         if (redirect) {
-            return <Redirect to={this.state.path} />;
+            direct = <Redirect to={this.state.path} />
         }
         return (
             <div className="container mb-5">
+                {direct}
                 <div className="py-5 text-center">
                     <h2>Xác nhận đặt hàng</h2>
                 </div>

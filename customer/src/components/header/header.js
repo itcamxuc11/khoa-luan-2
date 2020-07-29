@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { Redirect, useHistory } from 'react-router-dom';
 import * as firebase from 'firebase';
 import Nav from './nav';
 
@@ -12,7 +12,7 @@ export class Header extends Component {
             userLogined: null
         }
 
-        firebase.auth().onAuthStateChanged( (user) =>{
+        firebase.auth().onAuthStateChanged((user) => {
             this.setState({ userLogined: user });
         })
     }
@@ -34,22 +34,46 @@ export class Header extends Component {
         return [];
     }
 
+    onChangeQuantity = (event, id) => {
+        let val = event.target.value;
+        let cartStorage = JSON.parse(localStorage.getItem('cart'));
+        let items = cartStorage.items;
+        let i = items.findIndex((obj) => {
+            return obj.id == id
+        })
+
+        if (i !== -1) {
+            let oldCount = items[i].count;
+            let newTotal = cartStorage.total + (val - oldCount);
+            if (val == 0) {
+                items.splice(i, 1);
+            }
+            else items[i].count = val;
+            let newCart = { items: items, total: newTotal };
+            console.log(newTotal);
+            this.props.upDateCart(JSON.stringify(newCart));
+        }
+    }
+
     order = () => {
-        this.props.showCart();
+
         this.setState({
             redirect: true
         })
+        this.props.showCart();
+
     }
 
     render() {
         const { redirect } = this.state;
-
+        let direct='';
         if (redirect) {
-            return <Redirect to='/checkout' />;
+           direct = <Redirect to='/checkout' />
         }
 
         return (
             <div>
+                {direct}
                 <header className="header">
                     <div className="content">
                         <div className="header__inner"><a href="/"><img src="/images/logo_web.png" alt="Uber Eats" className="header__logo" /></a>
@@ -73,10 +97,10 @@ export class Header extends Component {
                                 </button>
                             </div>
                             <button onClick={this.props.showCart} className="header__link pos-relative" href="/basket">
-                                <img title="basket" className="header-logo" src="images/basket.svg" alt="basket" />
+                                <img title="basket" className="header-logo" src="/images/basket.svg" alt="basket" />
                                 {this.getCartNumber()}
                             </button>
-                            <Nav loginedUser = {this.state.userLogined} />
+                            <Nav loginedUser={this.state.userLogined} />
                         </div>
                     </div>
                 </header>
@@ -100,7 +124,8 @@ export class Header extends Component {
                                                 <td className="pr-0"><img className="item__img" alt="Double Sausage Egg McMuffin® Meal" src="https://d1ralsognjng37.cloudfront.net/65ef3c66-5dcb-41bc-842a-d9938ab68e31.jpeg" /></td>
                                                 <td className="text pl-0">{value.name}</td>
                                                 <td className="text">{value.price}</td>
-                                                <td className="text"><input type="number" Value={value.count} /></td>
+                                                <td className="text"><input onChange={(event) => { this.onChangeQuantity(event, value.id) }}
+                                                    type="number" Value={value.count} /></td>
                                             </tr>
                                         )
                                     })
@@ -129,6 +154,13 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         showCart: () => {
             dispatch({
                 type: 'SHOW_CART'
+            })
+        },
+
+        upDateCart: (data) => {
+            dispatch({
+                type: 'UPDATE',
+                data: data
             })
         }
     }

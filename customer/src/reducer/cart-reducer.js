@@ -22,14 +22,21 @@ const cartReducer = (state = cartState, action) => {
             }
             else items.push(action.item);
             localStorage.setItem('cart', JSON.stringify({
-                total: total+1,
+                total: total + 1,
                 items: items
             }));
             return { ...state, folowCart: !state.folowCart }
+
+        case 'UPDATE':
+            localStorage.setItem('cart',action.data);
+            return { ...state, folowCart: !state.folowCart }
+
         case 'REMOVE':
             return state
+
         case 'SHOW_CART':
             return { ...state, onCheckout: !state.onCheckout }
+            
         default:
             return state
     }

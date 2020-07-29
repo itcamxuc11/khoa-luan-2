@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
-import * as firebase from 'firebase';
-import { Redirect } from 'react-router-dom';
 
-export default class Login extends Component {
+export default class Register extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -36,21 +34,20 @@ export default class Login extends Component {
     render() {
 
         const { redirect } = this.state;
-        
-        let direct='';
         if (redirect) {
-           direct = <Redirect to='/'/>
+            return <Redirect to='/' />;
         }
         return (
             <div id="root">
-                {direct}
                 <div className="App">
                     <div className="sc-fznyAO ejMHpf">
                         <div className="form-container">
-                            <h2 className="mb-4">Đăng nhập</h2>
+                            <h2 className="mb-4">Đăng ký</h2>
                             <form>
                                 <input onChange={this.onChangeInput} name="email" type="email" placeholder="Email" className="mb-1 sc-AxiKw dVlCBT" />
                                 <input onChange={this.onChangeInput} name="password" type="password" placeholder="Mật khẩu" className="mb-1 sc-AxiKw dVlCBT" />
+                                <input onChange={this.onChangeInput} name="adress" type="text" placeholder="Địa chỉ" className="mb-1 sc-AxiKw dVlCBT" />
+                                <input onChange={this.onChangeInput} name="phoneNumber" type="number" placeholder="Số điện thoại" className="mb-1 sc-AxiKw dVlCBT" />
                                 <button type="button" onClick={this.onClickLogin} className="mb-1 sc-AxhCb gxxaVj">Đăng nhập</button>
                             </form>
                             <a href="/register">Đăng ký</a>
@@ -63,3 +60,4 @@ export default class Login extends Component {
         )
     }
 }
+    

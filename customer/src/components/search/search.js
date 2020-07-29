@@ -64,8 +64,8 @@ class Search extends Component {
                     {
                         this.state.itemList.map((value, index) => {
                             return (
-                                <Link to={"/restaurant/"+ value.id}>
-                                    <div key={index} className="item flex-colum item-search">
+                                <Link key={index} to={"/restaurant/"+ value.id}>
+                                    <div  className="item flex-colum item-search">
                                         <div className="store-banner">
                                             <img className="reponsive-img" src="https://d1sag4ddilekf6.cloudfront.net/compressed/merchants/5-CZCKJNWFLAEXV2/hero/bc5d650bc29e40d0a789e23cea051895_1590338521272011232.jpg" />
                                         </div>
