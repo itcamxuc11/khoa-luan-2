@@ -78,9 +78,8 @@ export class Header extends Component {
                     <div className="content">
                         <div className="header__inner"><a href="/"><img src="/images/logo_web.png" alt="Uber Eats" className="header__logo" /></a>
                             <div className="header__delivery-info"><label className="control">
-                                <div className="control__input-wrapper tablet dropdown">
-                                    <img src="/images/input.svg" alt="Address" className="control_icon" />
-                                    <input type="text" name="address" placeholder="Địa chỉ" className="control_input control_input--small" />
+                                <div className="control__input-wrapper border-0 tablet dropdown">
+                                    
                                     <ul className="dropdown-leagues">
                                     </ul>
                                 </div>
