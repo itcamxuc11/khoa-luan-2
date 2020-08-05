@@ -32,7 +32,8 @@ export default class Register extends Component {
                         name: this.state.displayName,
                         address: this.state.address,
                         email: this.state.email,
-                        phoneNumber: this.state.phoneNumber
+                        phoneNumber: this.state.phoneNumber,
+                        role: 'user'
                     })
                     .then(() => {
                         this.setState({

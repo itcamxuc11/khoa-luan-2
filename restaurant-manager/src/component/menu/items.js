@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import * as firebase from 'firebase';
-import { Modal } from 'react-bootstrap'
+import { Modal, Form } from 'react-bootstrap'
+import bsCustomFileInput from 'bs-custom-file-input';
 
 export default class Items extends Component {
     constructor(props) {
@@ -11,6 +12,7 @@ export default class Items extends Component {
             searchKey: '',
             selectedCategory: '',
             showModal: false,
+            fileName: 'Chọn tệp',
 
             oldItem: { id: '', data: {} },
             newName: '',
@@ -22,6 +24,7 @@ export default class Items extends Component {
     }
 
     componentDidMount() {
+        bsCustomFileInput.init();
         const db = firebase.firestore();
         var restaurantId = firebase.auth().currentUser.uid;
 
@@ -114,6 +117,10 @@ export default class Items extends Component {
         this.setState({ [nam]: val });
     }
 
+    setRef = (ref) => {
+        this.file = ref;
+    }
+
     onClickSave = () => {
         var restaurantId = firebase.auth().currentUser.uid;
         const db = firebase.firestore().collection("restaurants").doc(restaurantId);
@@ -132,12 +139,20 @@ export default class Items extends Component {
                 })
         }
         else {
-            db.get()
-                .then((doc) => {
-                    doc.ref.collection('menu').doc().set(newItem).then(() => {
-                        this.setState({ showModal: false });
-                    }).catch((err) => { console.log(err) })
+            const file = this.file.files[0];
+            const storeageRef = firebase.storage().ref();
+            const mainImage = storeageRef.child(Date.now() + file.name);
+            mainImage.put(file).then((s) => {
+                s.ref.getDownloadURL().then((url) => {
+                    newItem.image = url;
+                    db.get()
+                        .then((doc) => {
+                            doc.ref.collection('menu').doc().set(newItem).then(() => {
+                                this.setState({ showModal: false });
+                            }).catch((err) => { console.log(err) })
+                        })
                 })
+            })
         }
     }
 
@@ -248,6 +263,16 @@ export default class Items extends Component {
                                             })
                                         }
                                     </select>
+                                </div>
+                            </div>
+                            <div className="col-12">
+                                <div className="form-group">
+                                    <label>Hinh ảnh:</label>
+                                    <div class="custom-file">
+                                        <input ref={this.setRef} onChange={e => this.setState({ fileName: e.target.files[0].name })}
+                                            id="inputGroupFile01" type="file" className="custom-file-input" />
+                                        <label className="custom-file-label" for="inputGroupFile01">{this.state.fileName}</label>
+                                    </div>
                                 </div>
                             </div>
                         </div>

@@ -90,7 +90,7 @@ export default class Restaurant extends Component {
                                                     {
                                                         this.state.itemList.filter(item => item.data.category === value).map((val, index) => {
                                                             return (
-                                                                <Item id={val.id} key={index} name={val.data.name} price={val.data.price}
+                                                                <Item id={val.id} key={index} image={val.data.image}  name={val.data.name} price={val.data.price}
                                                                     description={val.data.description} />
                                                             )
                                                         })

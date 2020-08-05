@@ -34,18 +34,19 @@ class Search extends Component {
                         if (response.routes[0]) {
                             var directionsData = response.routes[0].legs[0]; // Get data about the mapped route
                             if (!directionsData) {
-                                window.alert('Directions request failed');
                                 return;
                             }
                             else {
-                                this.setState({
-                                    itemList: [...this.state.itemList, {
-                                        id: id,
-                                        data: data,
-                                        distance: directionsData.distance.text,
-                                        duration: directionsData.duration.text
-                                    }]
-                                })
+                                if (directionsData.distance.value < 10000) {
+                                    this.setState({
+                                        itemList: [...this.state.itemList, {
+                                            id: id,
+                                            data: data,
+                                            distance: directionsData.distance.text,
+                                            duration: directionsData.duration.text
+                                        }]
+                                    })
+                                }
                             }
                         }
                     })
@@ -64,8 +65,8 @@ class Search extends Component {
                     {
                         this.state.itemList.map((value, index) => {
                             return (
-                                <Link key={index} to={"/restaurant/"+ value.id}>
-                                    <div  className="item flex-colum item-search">
+                                <Link key={index} to={"/restaurant/" + value.id}>
+                                    <div className="item flex-colum item-search">
                                         <div className="store-banner">
                                             <img className="reponsive-img" src="https://d1sag4ddilekf6.cloudfront.net/compressed/merchants/5-CZCKJNWFLAEXV2/hero/bc5d650bc29e40d0a789e23cea051895_1590338521272011232.jpg" />
                                         </div>

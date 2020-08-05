@@ -479,3 +479,10 @@ a {
 .btn-hs.show{
   visibility: visible !important;
 }
+
+.over-text{
+  white-space: nowrap; 
+  max-width: 100px;
+  overflow: hidden;
+  text-overflow: ellipsis; 
+}

@@ -48,7 +48,7 @@ export default class Login extends Component {
                 <div className="App">
                     <div className="sc-fznyAO ejMHpf pt-3">
                         <div className="form-container">
-                            <h2 className="mb-4">Đăng nhập</h2>
+                            <h2 className="mb-4 mt-4">Đăng nhập</h2>
                             <form>
                                 <input onChange={this.onChangeInput} name="email" type="email" placeholder="Email" className="mb-1 sc-AxiKw dVlCBT" />
                                 <input onChange={this.onChangeInput} name="password" type="password" placeholder="Mật khẩu" className="mb-1 sc-AxiKw dVlCBT" />

@@ -34,7 +34,7 @@ export class Item extends Component {
                             <p onClick={this.addToCart} className="col-2 mb-1 text-right p-0"><img className="add-cart" alt='add' src="/images/plus.svg" /></p>
                         </div>
                     </div>
-                    <div className="item-right"><img className="item__img" alt="Double Sausage Egg McMuffin® Meal" src="https://d1ralsognjng37.cloudfront.net/65ef3c66-5dcb-41bc-842a-d9938ab68e31.jpeg" />
+                    <div className="item-right"><img className="item__img" alt="Meal" src={this.props.image} />
                     </div>
                 </div>
             </div>
