@@ -7,7 +7,7 @@ export default class Orders extends Component {
         super(props);
         this.state = {
             orders: [],
-            items:[],
+            items: [],
             showModal: false,
         }
     }
@@ -19,18 +19,21 @@ export default class Orders extends Component {
             .onSnapshot((snapmshot) => {
                 snapmshot.docChanges().forEach((change) => {
                     if (change.type === "added") {
-                        this.setState({ orders: [...this.state.orders, change.doc.data()] })
+                        let date = new Date(1000 * change.doc.data().date.seconds);
+                        this.setState({
+                            orders: [...this.state.orders,
+                            { ...change.doc.data(), date: date }]
+                        })
                     }
                 })
             })
     }
 
     onClickDetail = (i) => {
-        let string = this.state.orders[i].detail;
-        let detail =  JSON.parse(string);
+        let detail = this.state.orders[i].detail;
         this.setState({
             showModal: true,
-            items: detail.items
+            items: detail
         })
     }
 
@@ -55,6 +58,7 @@ export default class Orders extends Component {
                                 <th>Người mua</th>
                                 <th>Số điện thoại</th>
                                 <th>Tổng tiền</th>
+                                <th>Ngày tạo</th>
                                 <th>Trạng thái</th>
                             </tr>
                         </thead>
@@ -67,6 +71,7 @@ export default class Orders extends Component {
                                             <td>{val.username}</td>
                                             <td>{val.phoneNumber}</td>
                                             <td>{val.totalPrice}</td>
+                                            <td>{val.date.toDateString()}</td>
                                             <td>{val.status}</td>
                                             <td>
                                                 <button onClick={() => { this.onClickDetail(key) }} className="btn btn-outline-info">

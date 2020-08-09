@@ -26,17 +26,34 @@ const cartReducer = (state = cartState, action) => {
                 total: total + 1,
                 items: items
             }));
-            return { ...state, folowCart: !state.folowCart, alertShow: true }
-
+            return { ...state, folowCart: !state.folowCart, alertShow: true };
+            
         case 'UPDATE':
             localStorage.setItem('cart', action.data);
+            return { ...state, folowCart: !state.folowCart }
+
+        case 'DELETE':
+            let dCartStorage = JSON.parse(localStorage.getItem('cart'));
+            let dItems = [...dCartStorage.items];
+            let dTotal = dCartStorage.total;
+
+            let i = dItems.findIndex((obj) => {
+                return obj.id == action.item.id;
+            })
+
+            dItems.splice(i, 1);
+            localStorage.setItem('cart', JSON.stringify({
+                total: dTotal - action.item.count,
+                items: dItems
+            }));
+
             return { ...state, folowCart: !state.folowCart }
 
         case 'SHOW_CART':
             return { ...state, onCheckout: !state.onCheckout }
 
         case 'HIDE_ALERT':
-            return { ...state, alertShow:false }
+            return { ...state, alertShow: false }
 
         default:
             return state

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
-import { Redirect, useHistory } from 'react-router-dom';
+import { Redirect, useHistory, Link } from 'react-router-dom';
 import * as firebase from 'firebase';
 import Nav from './nav';
 
@@ -56,30 +56,18 @@ export class Header extends Component {
     }
 
     order = () => {
-
-        this.setState({
-            redirect: true
-        })
         this.props.showCart();
-
     }
 
     render() {
-        const { redirect } = this.state;
-        let direct = '';
-        if (redirect) {
-            direct = <Redirect to='/checkout' />
-        }
-
         return (
             <div>
-                {direct}
                 <header className="header">
                     <div className="content">
                         <div className="header__inner"><a href="/"><img src="/images/logo_web.png" alt="Uber Eats" className="header__logo" /></a>
                             <div className="header__delivery-info"><label className="control">
                                 <div className="control__input-wrapper border-0 tablet dropdown">
-                                    
+
                                     <ul className="dropdown-leagues">
                                     </ul>
                                 </div>
@@ -113,11 +101,12 @@ export class Header extends Component {
                                     this.getCartInfo().map((value, key) => {
                                         return (
                                             <tr key={key}>
-                                                <td className="pr-0"><img className="item__img" alt="Double Sausage Egg McMuffin® Meal" src="https://d1ralsognjng37.cloudfront.net/65ef3c66-5dcb-41bc-842a-d9938ab68e31.jpeg" /></td>
+                                                <td className="pr-0"><img className="item__img" alt="Item" src={value.image} /></td>
                                                 <td className="text pl-0">{value.name}</td>
                                                 <td className="text">{value.price}</td>
-                                                <td className="text"><input onChange={(event) => { this.onChangeQuantity(event, value.id) }}
+                                                <td className="text"><input min="1" onChange={(event) => { this.onChangeQuantity(event, value.id) }}
                                                     type="number" Value={value.count} /></td>
+                                                <td onClick={()=>{this.props.deleteItemFromCart(value)}} className="text delete-item">X</td>
                                             </tr>
                                         )
                                     })
@@ -125,7 +114,9 @@ export class Header extends Component {
                             </tbody>
                         </table>
                         <div className="checkout-footer">
-                            <button onClick={this.order}>Đặt hàng</button>
+                            <Link to="/checkout">
+                                <button onClick={this.order}>Đặt hàng</button>
+                            </Link>
                         </div>
                     </div>
                 </div>
@@ -148,11 +139,17 @@ const mapDispatchToProps = (dispatch, ownProps) => {
                 type: 'SHOW_CART'
             })
         },
-
         upDateCart: (data) => {
             dispatch({
                 type: 'UPDATE',
                 data: data
+            })
+        },
+
+        deleteItemFromCart: (item) => {
+            dispatch({
+                type: 'DELETE',
+                item: item
             })
         }
     }

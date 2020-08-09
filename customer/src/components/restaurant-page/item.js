@@ -12,6 +12,7 @@ export class Item extends Component {
         var item = {
             id: this.props.id,
             name: this.props.name,
+            image: this.props.image,
             price:this.props.price,
             description:this.props.description,
             count:1

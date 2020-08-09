@@ -17,7 +17,6 @@ class Checkout extends Component {
                 items: cartStorage.items,
                 count: cartStorage.total,
                 total: total,
-                detail: localStorage.getItem('cart')
             }
         }
         else {
@@ -45,8 +44,9 @@ class Checkout extends Component {
             address: this.state.address,
             phoneNumber: this.state.phoneNumber,
             totalPrice: this.state.total,
-            detail: this.state.detail,
+            detail: this.state.items,
             restaurant: restaurantId,
+            date: new Date(),
             user: firebase.auth().currentUser.uid,
             status: 'Chờ xác nhận',
         }).then(() => {

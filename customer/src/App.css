@@ -1457,6 +1457,11 @@ button {
   width: auto;
 }
 
+.delete-item{
+  cursor: pointer;
+  font-weight: 800;
+}
+
 .pos-relative{
   position: relative;
 }
