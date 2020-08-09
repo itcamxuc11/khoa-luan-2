@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import * as firebase from 'firebase';
 import { Redirect, Link } from 'react-router-dom';
+import { Modal } from 'react-bootstrap';
 
 export default class Login extends Component {
     constructor(props) {
@@ -8,6 +9,9 @@ export default class Login extends Component {
         this.state = {
             email: '',
             password: '',
+
+            forgetedAccount: '',
+            showModal: false,
         }
     }
 
@@ -33,13 +37,33 @@ export default class Login extends Component {
             });
     }
 
-    render() {
 
+    onClickReset = () => {
+        firebase.auth().sendPasswordResetEmail(this.state.forgetedAccount)
+            .then(() => {
+                alert("Sử dụng link được gửi vào email của bạn để đặt lại mật khẩu!");
+            })
+            .catch((err) => {
+                alert(err);
+            })
+    }
+
+    close = () => {
+        this.setState({ showModal: false })
+    }
+
+    showModal = () => {
+        this.setState({
+            showModal: true
+        })
+    }
+
+
+    render() {
         const { redirect } = this.state;
-        
-        let direct='';
+        let direct = '';
         if (redirect) {
-           direct = <Redirect to='/'/>
+            direct = <Redirect to='/' />
         }
 
         return (
@@ -55,9 +79,29 @@ export default class Login extends Component {
                                 <button type="button" onClick={this.onClickLogin} className="mb-1 sc-AxhCb gxxaVj">Đăng nhập</button>
                             </form>
                             <Link to="/register" >Đăng ký</Link>
+                            <Link className="ml-2" onClick={this.showModal}>Quên mật khẩu</Link>
                         </div>
                     </div>
                 </div>
+                <Modal show={this.state.showModal} onHide={this.close}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Quên mật khẩu</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <div className="d-flex">
+                            <div className="col">
+                                <div className="form-group">
+                                    <label>Email của bạn:</label>
+                                    <input onChange={this.onChangeInput} name="forgetedAccount" type="text" className="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <button className="btn btn-secondary" onClick={this.close}>Close</button>
+                        <button className="btn btn-primary" onClick={this.onClickReset}>Reset mật khẩu</button>
+                    </Modal.Footer>
+                </Modal>
             </div>
 
         )
