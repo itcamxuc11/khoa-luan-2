@@ -47,17 +47,16 @@ export default class Profile extends Component {
     }
 
     onClickDetail = (i) => {
-        let string = this.state.orders[i].detail;
-        let detail = JSON.parse(string);
         this.setState({
             showModal: true,
-            items: detail.items
+            items: this.state.orders[i].detail
         })
     }
 
     close = () => {
         this.setState({ showModal: false })
     }
+
     onEditClick = () => {
         this.setState({
             editClass: 'show',

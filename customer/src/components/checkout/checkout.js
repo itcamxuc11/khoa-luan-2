@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import * as firebase from 'firebase';
+import AutoComplete from 'react-google-autocomplete';
+import key from '../../config/googlemap';
 import { Redirect } from 'react-router-dom';
 
 class Checkout extends Component {
@@ -42,6 +44,7 @@ class Checkout extends Component {
         db.collection('orders').doc().set({
             username: this.state.name,
             address: this.state.address,
+            location:this.state.location,
             phoneNumber: this.state.phoneNumber,
             totalPrice: this.state.total,
             detail: this.state.items,
@@ -62,6 +65,16 @@ class Checkout extends Component {
         let nam = event.target.name;
         let val = event.target.value;
         this.setState({ [nam]: val });
+    }
+
+    onSelected = (place) => {
+        this.setState({
+            address:place.formatted_address,
+            location: {
+                lat: place.geometry.location.lat(),
+                lng: place.geometry.location.lng()
+            },
+        })
     }
 
     render() {
@@ -117,7 +130,7 @@ class Checkout extends Component {
                             </div>
                             <div className="mb-3">
                                 <label htmlFor="address">Địa chỉ</label>
-                                <input type="text" onChange={this.onChangeInput} className="form-control" name="address" placeholder="12 Hoàng Diệu 2" required />
+                                <AutoComplete onPlaceSelected={this.onSelected} apiKey={key} types={['address']} componentRestrictions={{ country: "VN" }} className="form-control" placeholder="Địa chỉ" />
                                 <div className="invalid-feedback">
                                     Please enter your shipping address.
                                  </div>
