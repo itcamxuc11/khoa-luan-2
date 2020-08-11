@@ -68,7 +68,7 @@ export default class Login extends Component {
                                 <input onChange={this.onChangeInput} name="password" type="password" placeholder="Mật khẩu" className="mb-1 sc-AxiKw dVlCBT" />
                                 <button type="button" onClick={this.onClickLogin} className="mb-1 sc-AxhCb gxxaVj">Đăng nhập</button>
                             </form>
-                            <Link to="register">Đăng ký</Link>
+                            <Link to="/register">Đăng ký</Link>
                             <Link className="ml-2" onClick={this.showModal}>Quên mật khẩu</Link>
                         </div>
                     </div>

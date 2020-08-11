@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import * as firebase from 'firebase'
-import { PieChart, Pie, Sector, Cell, ResponsiveContainer, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
+import { PieChart, Pie, Cell, ResponsiveContainer, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 import Graphex from './graphex';
 
 
-const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
-
+const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042',"#DC143C","#2F4F4F"];
 const RADIAN = Math.PI / 180;
+
 const renderCustomizedLabel = ({
     cx, cy, midAngle, innerRadius, outerRadius, percent, index,
 }) => {
@@ -30,40 +30,40 @@ export default class Analytics extends Component {
             curentMonth: (new Date()).getMonth(),
             data: [
                 {
-                    name: "Một", value: 0
+                    name: "Tháng 1", value: 0
                 },
                 {
-                    name: "Hai", value: 0
+                    name: "Tháng 2", value: 0
                 },
                 {
-                    name: "Ba", value: 0
+                    name: "Tháng 3", value: 0
                 },
                 {
-                    name: "Bốn", value: 0
+                    name: "Tháng 4", value: 0
                 },
                 {
-                    name: "Năm", value: 0
+                    name: "Tháng 5", value: 0
                 },
                 {
-                    name: "Sáu", value: 0
+                    name: "Tháng 6", value: 0
                 },
                 {
-                    name: "Bảy", value: 0
+                    name: "Tháng 7", value: 0
                 },
                 {
-                    name: "Tám", value: 0
+                    name: "Tháng 8", value: 0
                 },
                 {
-                    name: "Chín", value: 0
+                    name: "Tháng 9", value: 0
                 },
                 {
-                    name: "Mười", value: 0
+                    name: "Tháng 10", value: 0
                 },
                 {
-                    name: "Nười một", value: 0
+                    name: "Tháng 11", value: 0
                 },
                 {
-                    name: "Mười hai", value: 0
+                    name: "Tháng 12", value: 0
                 }
             ],
             data2: []
@@ -128,10 +128,10 @@ export default class Analytics extends Component {
                     <div className="col-6">
                     </div>
                 </div>
-                <ResponsiveContainer className="chart" height={300}>
+                <ResponsiveContainer className="chart" height={350}>
                     <LineChart
                         width={600}
-                        height={300}
+                        height={400}
                         data={this.state.data.slice(0, this.state.curentMonth + 1)}
                         margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
                     >

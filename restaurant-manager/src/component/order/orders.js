@@ -64,14 +64,14 @@ export default class Orders extends Component {
                         </thead>
                         <tbody>
                             {
-                                this.state.orders.map((val, key) => {
+                                this.state.orders.sort(compare).map((val, key) => {
                                     return (
                                         <tr key={key + 1}>
                                             <td>{key}</td>
                                             <td>{val.username}</td>
                                             <td>{val.phoneNumber}</td>
                                             <td>{val.totalPrice}</td>
-                                            <td>{val.date.toDateString()}</td>
+                                            <td>{getDateFormated(val.date)}</td>
                                             <td>{val.status}</td>
                                             <td>
                                                 <button onClick={() => { this.onClickDetail(key) }} className="btn btn-outline-info">
@@ -93,7 +93,7 @@ export default class Orders extends Component {
                         <div className=" mb-4">
                             <ul className="list-group mb-3">
                                 {
-                                    this.state.items.map((value, key) => {
+                                    this.state.items.sort(compare).map((value, key) => {
                                         return (
                                             <li key={key} className="list-group-item d-flex justify-content-between lh-condensed">
                                                 <div>
@@ -115,4 +115,26 @@ export default class Orders extends Component {
             </div>
         )
     }
+}
+
+function compare( a, b ) {
+    if ( a.date < b.date ){
+      return 1;
+    }
+    if ( a.date > b.date ){
+      return -1;
+    }
+    return 0;
+  }
+
+ function getDateFormated(date){
+    let mon = date.getMonth();
+    let day = date.getDate();
+    let hours = date.getHours();
+    let min = date.getMinutes();
+    if(mon<10) mon = '0' + mon;
+    if(day < 10) day =  '0' + day;
+    if(hours<10) hours = '0' + hours;
+    if(min < 10) min = '0' + min;
+    return day + '-' + mon + '-' + date.getFullYear() + ' ' + hours + ':' + min;
 }

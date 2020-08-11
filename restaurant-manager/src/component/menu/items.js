@@ -250,7 +250,7 @@ export default class Items extends Component {
                             <div className="col-lg-6 col-md-12">
                                 <div className="form-group">
                                     <label>Giá:</label>
-                                    <input onChange={this.onChangeInput} name="newPrice" type="text" className="form-control" Value={this.state.oldItem.data.price} />
+                                    <input onChange={this.onChangeInput} name="newPrice" type="number" min="0" className="form-control" Value={this.state.oldItem.data.price} />
                                 </div>
                             </div>
                             <div className="col-lg-6 col-md-12">
