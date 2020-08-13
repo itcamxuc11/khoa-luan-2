@@ -22,6 +22,7 @@ export default class Restaurant extends Component {
         DBRestaurant.get().then((doc) => {
             if (doc.exists) {
                 var data = doc.data();
+                localStorage.setItem('location',JSON.stringify(doc.data().location));
                 let categories = [];
                 if(data.categories) categories = data.categories;
                 this.setState({

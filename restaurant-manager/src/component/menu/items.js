@@ -19,6 +19,7 @@ export default class Items extends Component {
             newDescription: '',
             newPrice: '',
             newCategory: '',
+            newImage:'',
             modalHeading: 'Thêm sản phẩm'
         }
     }
@@ -91,6 +92,7 @@ export default class Items extends Component {
     }
 
     onClickEdit = (item) => {
+        console.log(item.data.image);
         this.setState({
             showModal: true,
             oldItem: item,
@@ -99,6 +101,7 @@ export default class Items extends Component {
             newPrice: item.data.price,
             newDescription: item.data.description,
             newCategory: item.data.category,
+            newImage:item.data.image
         });
     }
 
@@ -128,7 +131,8 @@ export default class Items extends Component {
             name: this.state.newName,
             price: this.state.newPrice,
             description: this.state.newDescription,
-            category: this.state.newCategory
+            category: this.state.newCategory,
+            image: this.state.newImage
         }
         if (this.state.oldItem.id !== '') {
             db.get()
@@ -268,7 +272,7 @@ export default class Items extends Component {
                             <div className="col-12">
                                 <div className="form-group">
                                     <label>Hinh ảnh:</label>
-                                    <div class="custom-file">
+                                    <div className="custom-file">
                                         <input ref={this.setRef} onChange={e => this.setState({ fileName: e.target.files[0].name })}
                                             id="inputGroupFile01" type="file" className="custom-file-input" />
                                         <label className="custom-file-label" for="inputGroupFile01">{this.state.fileName}</label>

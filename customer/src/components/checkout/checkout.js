@@ -19,22 +19,17 @@ class Checkout extends Component {
                 items: cartStorage.items,
                 count: cartStorage.total,
                 total: total,
+                shippingFee: 0,
             }
         }
         else {
             this.state = {
                 items: [],
                 count: 0,
-                total: 0
+                total: 0,
+                shippingFee: 0,
             }
         }
-        firebase.auth().onAuthStateChanged((user) => {
-            if (!user)
-                this.setState({
-                    redirect: true,
-                    path: '/login'
-                })
-        })
     }
 
     onSubmitHandler = (event) => {
@@ -44,11 +39,12 @@ class Checkout extends Component {
         db.collection('orders').doc().set({
             username: this.state.name,
             address: this.state.address,
-            location:this.state.location,
+            location: this.state.location,
             phoneNumber: this.state.phoneNumber,
-            totalPrice: this.state.total,
+            totalPrice: this.state.total + this.state.shippingFee,
             detail: this.state.items,
             restaurant: restaurantId,
+            shippingFee: this.state.shippingFee,
             date: new Date(),
             user: firebase.auth().currentUser.uid,
             status: 'Chờ xác nhận',
@@ -68,13 +64,36 @@ class Checkout extends Component {
     }
 
     onSelected = (place) => {
+        var directionsService = new window.google.maps.DirectionsService();
         this.setState({
-            address:place.formatted_address,
+            address: place.formatted_address,
             location: {
                 lat: place.geometry.location.lat(),
                 lng: place.geometry.location.lng()
             },
         })
+        let resLocation = JSON.parse((localStorage.getItem('location')));
+        var origin = new window.google.maps.LatLng(resLocation.lat, resLocation.lng);
+        var des = new window.google.maps.LatLng(place.geometry.location.lat(), place.geometry.location.lng());
+        var route = {
+            origin: origin,
+            destination: des,
+            travelMode: 'DRIVING'
+        }
+        directionsService.route(route,
+            (response, status) => {
+                if (response.routes[0]) {
+                    var directionsData = response.routes[0].legs[0]; // Get data about the mapped route
+                    if (!directionsData) {
+                        return;
+                    }
+                    else {
+                        this.setState({
+                            shippingFee: getShippingFee(directionsData.distance.value)
+                        })
+                    }
+                }
+            })
     }
 
     render() {
@@ -111,8 +130,12 @@ class Checkout extends Component {
                                 })
                             }
                             <li className="list-group-item d-flex justify-content-between">
+                                <span>Phí vận chuyển</span>
+                                <strong>{this.state.shippingFee}</strong>
+                            </li>
+                            <li className="list-group-item d-flex justify-content-between">
                                 <span>Tổng (VNĐ)</span>
-                                <strong>{this.state.total}</strong>
+                                <strong>{this.state.total + this.state.shippingFee}</strong>
                             </li>
                         </ul>
                     </div>
@@ -156,4 +179,9 @@ const mapStateToProps = (state) => {
     }
 }
 
+function getShippingFee(distance) {
+    distance = distance/1000;
+    if (distance <= 5) return 20000;
+    else return Math.ceil(distance) * 5000 + 20000;
+}
 export default connect(mapStateToProps)(Checkout)

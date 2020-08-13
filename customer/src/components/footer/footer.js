@@ -14,7 +14,7 @@ export default class Footer extends Component {
                             </div>
                             <div className="footer__mobile-apps"><a href="https://play.google.com/store/apps/details?id=com .ubercab.eats&referrer=mat_click_id%3D7056afe65227473 9b3ef74d2aa740491-20191103-7336%26link_click_id%3D719 550996128553076&mat_click_id=7056afe652274739b3ef74d2 aa740491-20191103-7336 " className="footer__mobile-app"><img src="/images/Google.svg" alt="App Store" /></a><a href="https://play.google.com/store/apps/details?id=com .ubercab.eats&referrer=mat_click_id%3D7056afe65227473 9b3ef74d2aa740491-20191103-7336%26link_click_id%3D719 550996128553076&mat_click_id=7056afe652274739b3ef74d2 aa740491-20191103-7336 " className="footer__mobile-app"><img src="/images/Apple.svg" alt="Google Play" /></a></div>
                         </div>
-                        <div><a href="http://localhost:4000/" className="links__link">Đăng ký mở quán</a></div>
+                        <div><a href="http://localhost:4000/register" className="links__link">Đăng ký mở quán</a></div>
                         <div className="footer__top-links links"><a href="#" className="links__link links__link--intended">Lên đầu trang</a><a href="#" className="links__link"></a></div>
                     </div>
                     <div className="footer__bottom-part">

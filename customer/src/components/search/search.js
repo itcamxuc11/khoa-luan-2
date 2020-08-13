@@ -13,9 +13,6 @@ class Search extends Component {
     componentDidMount() {
         const db = firebase.firestore();
         var directionsService = new window.google.maps.DirectionsService();
-        db.settings({
-            timestampsInSnapshots: true
-        });
 
         var DBRestaurant = db.collection('restaurants');
         DBRestaurant.get().then((itemList) => {
